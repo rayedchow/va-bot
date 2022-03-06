@@ -18,10 +18,20 @@ const DATA = {
 
 client.on('ready', () => console.log('bot initialized'));
 
+const parseTimeFormat = (format: string) => {
+	const dateParams = format.toUpperCase().split(' '); // date time
+
+};
+
 client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands')) return;
 	const currentUTC = new Date().getTime();
+
 });
+
+// setInterval(() => {
+
+// }, 5000);
 
 client.login(process.env.TOKEN);
