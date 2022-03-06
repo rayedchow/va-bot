@@ -6,10 +6,16 @@ const fs_1 = require("fs");
 (0, dotenv_1.config)();
 const client = new discord_js_1.Client({
     intents: [
-        discord_js_1.Intents.FLAGS.GUILD_MESSAGES
+        discord_js_1.Intents.FLAGS.GUILDS,
+        discord_js_1.Intents.FLAGS.GUILD_MEMBERS,
+        discord_js_1.Intents.FLAGS.GUILD_MESSAGES,
+        discord_js_1.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
     ],
     partials: [
         'MESSAGE',
+        'USER',
+        'REACTION',
+        'CHANNEL'
     ]
 });
 const DATA = {
