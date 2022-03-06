@@ -7,23 +7,16 @@ const fs_1 = require("fs");
 const client = new discord_js_1.Client({
     intents: [
         discord_js_1.Intents.FLAGS.GUILDS,
-        discord_js_1.Intents.FLAGS.GUILD_MEMBERS,
-        discord_js_1.Intents.FLAGS.GUILD_MESSAGES,
-        discord_js_1.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
-    ],
-    partials: [
-        'MESSAGE',
-        'USER',
-        'REACTION',
-        'CHANNEL'
+        discord_js_1.Intents.FLAGS.GUILD_MESSAGES
     ]
 });
 const DATA = {
     get: () => JSON.parse((0, fs_1.readFileSync)('./data.json').toString()),
     write: (data) => (0, fs_1.writeFileSync)('./data.json', JSON.stringify(data))
 };
+client.on('ready', () => console.log('bot initialized'));
 client.on('messageCreate', message => {
-    console.log(message);
-    // console.log(message.content, message.channel);
+    // console.log(message);
+    console.log(message.content, message.channel);
 });
 client.login(process.env.TOKEN);

@@ -7,15 +7,7 @@ config();
 const client = new Client({
 	intents: [
 		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MEMBERS,
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.GUILD_MESSAGE_REACTIONS
-	],
-	partials: [
-		'MESSAGE',
-		'USER',
-		'REACTION',
-		'CHANNEL'
+		Intents.FLAGS.GUILD_MESSAGES
 	]
 });
 
@@ -24,9 +16,11 @@ const DATA = {
 	write: (data: Schedule[]) => writeFileSync('./data.json', JSON.stringify(data))
 };
 
+client.on('ready', () => console.log('bot initialized'));
+
 client.on('messageCreate', message => {
-	console.log(message);
-	// console.log(message.content, message.channel);
+	// console.log(message);
+	console.log(message.content, message.channel);
 });
 
 client.login(process.env.TOKEN);
