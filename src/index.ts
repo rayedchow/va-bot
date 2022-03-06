@@ -19,7 +19,15 @@ const DATA = {
 client.on('ready', () => console.log('bot initialized'));
 
 const parseTimeFormat = (format: string) => {
-	const dateParams = format.toUpperCase().split(' '); // date time
+	const formatParams = format.toLowerCase().split(' '); // ['3/6/22', '4pm']
+	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+	if(/^[a-zA-Z()]+$/.test(formatParams[0])) {
+		const currDate = new Date();
+		if(days.includes(formatParams[0])) {
+			
+		}
+	}
+	const dateParams = formatParams[0].split('/'); // ['3', '6', '22']
 
 };
 
@@ -27,7 +35,7 @@ client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands')) return;
 	const currentUTC = new Date().getTime();
-
+	
 });
 
 // setInterval(() => {
