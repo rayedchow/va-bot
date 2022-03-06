@@ -19,7 +19,8 @@ const DATA = {
 };
 
 client.on('messageCreate', message => {
-	console.log(message.content, message.channel);
+	console.log(message);
+	// console.log(message.content, message.channel);
 });
 
 client.login(process.env.TOKEN);
