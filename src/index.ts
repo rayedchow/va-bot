@@ -24,6 +24,7 @@ const parseTimeFormat = (format: string) => {
 	if(/^[a-zA-Z()]+$/.test(formatParams[0])) {
 		const currDate = new Date();
 		if(days.includes(formatParams[0])) {
+			// delta time formula = 86400000*((days.indexOf(formatParams[0])-currDate.getDay()));
 			
 		}
 	}
