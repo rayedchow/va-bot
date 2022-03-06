@@ -21,7 +21,7 @@ client.on('ready', () => console.log('bot initialized'));
 client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands')) return;
-	console.log(new Date().getUTCMilliseconds());
+	console.log(new Date().getTime());
 });
 
 client.login(process.env.TOKEN);
