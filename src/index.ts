@@ -19,8 +19,9 @@ const DATA = {
 client.on('ready', () => console.log('bot initialized'));
 
 client.on('messageCreate', message => {
-	// console.log(message);
-	console.log(message.content, message.channel);
+	if((message.channel.type === 'DM') || 
+		(message.channel.name !== 'commands')) return;
+	console.log(new Date().getUTCMilliseconds());
 });
 
 client.login(process.env.TOKEN);

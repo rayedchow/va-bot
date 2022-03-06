@@ -1,4 +1,4 @@
 export interface Schedule {
-	time: Date
+	time: number
 	activity: string
 }
