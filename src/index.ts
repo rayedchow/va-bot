@@ -20,12 +20,15 @@ client.on('ready', () => console.log('bot initialized'));
 
 const parseDateFormat = (date: string): string => {
 	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+	const deltaDay = ['today', 'tomorrow'];
 	if(/^[a-zA-Z()]+$/.test(date)) {
 		const currDate = new Date();
 		if(days.includes(date)) {
 			// delta time formula = 86400000*((days.indexOf(date)-currDate.getDay()));
-			const deltaDays = days.indexOf(date)-currDate.getDay();
-			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+deltaDays}`;
+			const dateDelta = days.indexOf(date)-currDate.getDay();
+			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`;
+		} else if(deltaDay.includes(date)) {
+			
 		}
 	}
 	const dateParams = date.split('/'); // ['3', '6', '22']
