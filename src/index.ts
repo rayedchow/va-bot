@@ -24,6 +24,11 @@ client.on('ready', () => {
 			if(schedule.time <= new Date().getTime()) {
 				currData.splice(i, 1);
 				DATA.write(currData);
+				const alertChannel = client.guilds.cache.get('950093273995833405')?.channels.cache.get('950093273995833408');
+				const alertUser = '419223184366239753';
+				if(alertChannel && alertChannel.isText()) {
+					alertChannel.send(`<@${alertUser}> alert: ${schedule.activity} `);
+				}
 			}
 		});
 	}, 15000);
@@ -84,6 +89,7 @@ client.on('messageCreate', message => {
 	const currData=DATA.get();
 	currData.push({
 		time: date.getTime(),
+		parsedTime: parsedDate,
 		activity: evName
 	});
 	DATA.write(currData);
