@@ -68,7 +68,16 @@ client.on('messageCreate', message => {
 		(message.channel.name !== 'commands') || 
 		(message.author.bot)) return;
 	const [evDate, evName] = message.content.split('\n');
-	message.channel.send(`${getDateString(evDate.toLowerCase())} ${evName}`);
+	const parsedDate = getDateString(evDate.toLowerCase());
+	const date = new Date(parsedDate);
+	console.log(date.getTime());
+	const currData=DATA.get();
+	currData.push({
+		time: date.getTime(),
+		activity: evName
+	});
+	DATA.write(currData);
+	message.react('✅');
 });
 
 // setInterval(() => {
