@@ -73,7 +73,7 @@ client.on('messageCreate', message => {
 	console.log(date.getTime());
 	const currData=DATA.get();
 	currData.push({
-		time: date.getTime(),
+		time: date.getTime()-60000,
 		activity: evName
 	});
 	DATA.write(currData);
@@ -82,7 +82,13 @@ client.on('messageCreate', message => {
 
 setInterval(() => {
 	const currData = DATA.get();
-	
+	currData.forEach((schedule, i) => {
+		if(schedule.time <= new Date().getTime()) {
+			console.log('o ma gah');
+			currData.splice(i, 1);
+			DATA.write(currData);
+		}
+	});
 }, 60000);
 
 client.login(process.env.TOKEN);
