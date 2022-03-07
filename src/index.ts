@@ -86,7 +86,7 @@ client.on('messageCreate', message => {
 	console.log(date.getTime());
 	const currData=DATA.get();
 	currData.push({
-		time: date.getTime()-60000,
+		time: date.getTime(),
 		activity: evName
 	});
 	DATA.write(currData);
