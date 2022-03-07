@@ -38,6 +38,10 @@ const parseDateFormat = (date: string): string => {
 	return `2022/${dateParams[0]}/${dateParams[1]}`; // returning dateParams data in date format
 };
 
+const parseTimeFormat = (time: string): string => {
+	return '';
+}
+
 client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands')) return;
