@@ -46,7 +46,7 @@ client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands')) return;
 	const currentUTC = new Date().getTime();
-	
+	message.channel.send(`${parseDateFormat('tomorrow')}`);
 });
 
 // setInterval(() => {
