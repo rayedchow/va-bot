@@ -60,7 +60,6 @@ const parseTimeFormat = (format: string): string => {
 const getDateString = (format: string): string => {
 	if(!format.includes(' ')) return `${parseDateFormat('today')} ${parseTimeFormat(format)}`;
 	const [date, time] = format.split(' ');
-	console.log(parseDateFormat(date));
 	return `${parseDateFormat(date)} ${parseTimeFormat(time)}`;
 }
 
