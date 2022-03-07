@@ -16,6 +16,12 @@ const DATA = {
 	write: (data: Schedule[]) => writeFileSync('./data.json', JSON.stringify(data))
 };
 
+try {
+	DATA.get();
+} catch {
+	DATA.write([]);
+}
+
 client.on('ready', () => {
 	console.log('bot initialized');
 	setInterval(() => {
