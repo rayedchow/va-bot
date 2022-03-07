@@ -20,15 +20,13 @@ client.on('ready', () => {
 	console.log('bot initialized');
 	setInterval(() => {
 		const currData = DATA.get();
-		console.log(currData);
 		currData.forEach((schedule, i) => {
 			if(schedule.time <= new Date().getTime()) {
-				console.log('o ma gah');
 				currData.splice(i, 1);
 				DATA.write(currData);
 			}
 		});
-	}, 60000);
+	}, 15000);
 });
 
 const parseDateFormat = (date: string): string => {
@@ -83,7 +81,6 @@ client.on('messageCreate', message => {
 	const [evDate, evName] = message.content.split('\n');
 	const parsedDate = getDateString(evDate.toLowerCase());
 	const date = new Date(parsedDate);
-	console.log(date.getTime());
 	const currData=DATA.get();
 	currData.push({
 		time: date.getTime(),
