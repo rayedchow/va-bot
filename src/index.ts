@@ -18,17 +18,17 @@ const DATA = {
 
 client.on('ready', () => console.log('bot initialized'));
 
-const parseTimeFormat = (format: string) => {
-	const formatParams = format.toLowerCase().split(' '); // ['3/6/22', '4pm']
+const parseDateFormat = (date: string): string => {
 	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-	if(/^[a-zA-Z()]+$/.test(formatParams[0])) {
+	if(/^[a-zA-Z()]+$/.test(date)) {
 		const currDate = new Date();
-		if(days.includes(formatParams[0])) {
-			// delta time formula = 86400000*((days.indexOf(formatParams[0])-currDate.getDay()));
-			
+		if(days.includes(date)) {
+			// delta time formula = 86400000*((days.indexOf(date)-currDate.getDay()));
+			const deltaDays = days.indexOf(date)-currDate.getDay();
+			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+deltaDays}`;
 		}
 	}
-	const dateParams = formatParams[0].split('/'); // ['3', '6', '22']
+	const dateParams = date.split('/'); // ['3', '6', '22']
 
 };
 
