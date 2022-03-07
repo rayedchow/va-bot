@@ -56,7 +56,7 @@ const parseTimeFormat = (format: string): string => {
 	format = format.toUpperCase();
 	const [time, modifier] = [format.substring(0, format.length-2), format.substring(format.length-2, format.length)];
 	if(!time.includes(':')) return convertTime(`${time}:00 ${modifier}`);
-	return '';
+	else return convertTime(`${time} ${modifier}`);
 }
 
 client.on('messageCreate', message => {
