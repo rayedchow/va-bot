@@ -23,12 +23,13 @@ const parseDateFormat = (date: string): string => {
 	const deltaDay = ['today', 'tomorrow'];
 	if(/^[a-zA-Z()]+$/.test(date)) {
 		const currDate = new Date();
-		if(days.includes(date)) {
+		if((days.concat(deltaDay)).includes(date)) {
 			// delta time formula = 86400000*((days.indexOf(date)-currDate.getDay()));
-			const dateDelta = days.indexOf(date)-currDate.getDay();
-			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`;
-		} else if(deltaDay.includes(date)) {
+			let dateDelta = 0;
+			if(days.includes(date)) dateDelta = days.indexOf(date)-currDate.getDay(); // calculating dateDelta for diff string dates
+			if(deltaDay.includes(date)) dateDelta = deltaDay.indexOf(date);
 
+			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`;
 		}
 	}
 	const dateParams = date.split('/'); // ['3', '6', '22']
