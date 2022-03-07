@@ -42,9 +42,19 @@ const parseDateFormat = (format: string): string => {
 	return `2022/${dateParams[0]}/${dateParams[1]}`; // returning dateParams data in date format
 };
 
-const parseTimeFormat = (time: string): string => {
+const convertTime = (timeStr: string) => {
+	const [time, modifier] = timeStr.split(' ');
+	let [hours, minutes] = time.split(':');
+	hours = (hours === '12') ? '00' : hours;
+	if (modifier === 'PM') hours = `${parseInt(hours, 10) + 12}`;
+	return `${hours}:${minutes}`;
+ };
+
+const parseTimeFormat = (format: string): string => {
 	// possibilities:
 	// 4pm, 4:30PM
+	const [time, modifier] = [format.substring(0, format.length-2), format.substring(format.length-2, format.length)];
+	console.log(time, modifier);
 	return '';
 }
 
@@ -53,7 +63,7 @@ client.on('messageCreate', message => {
 		(message.channel.name !== 'commands') || 
 		(message.author.bot)) return;
 	const currentUTC = new Date().getTime();
-	message.channel.send(`date: ${parseDateFormat(message.content)}`);
+	message.channel.send(`date: ${parseTimeFormat(message.content)}`);
 });
 
 // setInterval(() => {
