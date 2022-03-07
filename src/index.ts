@@ -18,7 +18,8 @@ const DATA = {
 
 client.on('ready', () => console.log('bot initialized'));
 
-const parseDateFormat = (date: string): string => {
+const parseDateFormat = (format: string): string => {
+	const date = format.toLowerCase();
 	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 	const deltaDay = ['today', 'tomorrow'];
 
@@ -42,6 +43,8 @@ const parseDateFormat = (date: string): string => {
 };
 
 const parseTimeFormat = (time: string): string => {
+	// possibilities:
+	// 4pm, 4:30PM
 	return '';
 }
 
