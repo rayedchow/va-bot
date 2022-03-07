@@ -18,8 +18,7 @@ const DATA = {
 
 client.on('ready', () => console.log('bot initialized'));
 
-const parseDateFormat = (format: string): string => {
-	const date = format.toLowerCase();
+const parseDateFormat = (date: string): string => {
 	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 	const deltaDay = ['today', 'tomorrow'];
 
@@ -53,10 +52,13 @@ const convertTime = (timeStr: string) => {
 const parseTimeFormat = (format: string): string => {
 	// possibilities:
 	// 4pm, 4:30PM
-	format = format.toUpperCase();
 	const [time, modifier] = [format.substring(0, format.length-2), format.substring(format.length-2, format.length)];
 	if(!time.includes(':')) return convertTime(`${time}:00 ${modifier}`);
 	else return convertTime(`${time} ${modifier}`);
+}
+
+const getDateString = (format: string): string => {
+	const [date, time] = format.toUpperCase().split(' ');
 }
 
 client.on('messageCreate', message => {
