@@ -63,8 +63,9 @@ client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
 		(message.channel.name !== 'commands') || 
 		(message.author.bot)) return;
+	const [evDate, evName] = message.content.split('\n');
 	const currentUTC = new Date().getTime();
-	message.channel.send(`date: ${parseTimeFormat(message.content)}`);
+	message.channel.send(`${evDate} ${evName}`);
 });
 
 // setInterval(() => {
