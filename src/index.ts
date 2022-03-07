@@ -80,8 +80,9 @@ client.on('messageCreate', message => {
 	message.react('✅');
 });
 
-// setInterval(() => {
-
-// }, 5000);
+setInterval(() => {
+	const currData = DATA.get();
+	
+}, 60000);
 
 client.login(process.env.TOKEN);
