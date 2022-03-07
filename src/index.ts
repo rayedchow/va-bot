@@ -53,6 +53,7 @@ const convertTime = (timeStr: string) => {
 const parseTimeFormat = (format: string): string => {
 	// possibilities:
 	// 4pm, 4:30PM
+	format = format.toUpperCase();
 	const [time, modifier] = [format.substring(0, format.length-2), format.substring(format.length-2, format.length)];
 	console.log(time, modifier);
 	return '';
