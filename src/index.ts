@@ -34,10 +34,8 @@ const parseDateFormat = (date: string): string => {
 		return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`; // returning calculated data in date format
 	}
 
-	const dateParams = date.split('/'); // ['3', '6', '22']
-
-
-	return '';
+	const dateParams = date.split('/');
+	return `2022/${dateParams[0]}/${dateParams[1]}`; // returning dateParams data in date format
 };
 
 client.on('messageCreate', message => {
