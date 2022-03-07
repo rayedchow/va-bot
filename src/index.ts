@@ -45,7 +45,7 @@ const convertTime = (timeStr: string) => {
 	const [time, modifier] = timeStr.split(' ');
 	let [hours, minutes] = time.split(':');
 	hours = (hours === '12') ? '00' : hours;
-	if (modifier === 'PM') hours = `${parseInt(hours, 10) + 12}`;
+	if (modifier === 'pm') hours = `${parseInt(hours, 10) + 12}`;
 	return `${hours}:${minutes}`;
  };
 
@@ -58,8 +58,9 @@ const parseTimeFormat = (format: string): string => {
 }
 
 const getDateString = (format: string): string => {
-	if(!format.includes(' ')) return `${parseDateFormat('today')} ${parseTimeFormat(format.toUpperCase())}`;
-	const [date, time] = format.toUpperCase().split(' ');
+	if(!format.includes(' ')) return `${parseDateFormat('today')} ${parseTimeFormat(format)}`;
+	const [date, time] = format.split(' ');
+	console.log(parseDateFormat(date));
 	return `${parseDateFormat(date)} ${parseTimeFormat(time)}`;
 }
 
@@ -68,8 +69,7 @@ client.on('messageCreate', message => {
 		(message.channel.name !== 'commands') || 
 		(message.author.bot)) return;
 	const [evDate, evName] = message.content.split('\n');
-	const currentUTC = new Date().getTime();
-	message.channel.send(`${evDate} ${evName}`);
+	message.channel.send(`${getDateString(evDate.toLowerCase())} ${evName}`);
 });
 
 // setInterval(() => {
