@@ -28,11 +28,11 @@ const parseDateFormat = (date: string): string => {
 			const dateDelta = days.indexOf(date)-currDate.getDay();
 			return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`;
 		} else if(deltaDay.includes(date)) {
-			
+
 		}
 	}
 	const dateParams = date.split('/'); // ['3', '6', '22']
-
+	return '';
 };
 
 client.on('messageCreate', message => {
