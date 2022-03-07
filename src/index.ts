@@ -58,8 +58,8 @@ const parseTimeFormat = (format: string): string => {
 }
 
 const getDateString = (format: string): string => {
+	if(!format.includes(' ')) return `${parseDateFormat('today')} ${parseTimeFormat(format.toUpperCase())}`;
 	const [date, time] = format.toUpperCase().split(' ');
-	
 }
 
 client.on('messageCreate', message => {
