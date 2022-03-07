@@ -28,7 +28,10 @@ const parseDateFormat = (date: string): string => {
 
 		// delta time formula = 86400000*((days.indexOf(date)-currDate.getDay()));
 		let dateDelta = 0;
-		if(days.includes(date)) dateDelta = days.indexOf(date)-currDate.getDay(); // calculating dateDelta for diff string dates
+		if(days.includes(date)) {
+			dateDelta = days.indexOf(date)-currDate.getDay(); // calculating dateDelta for diff string dates
+			if(dateDelta === 0) dateDelta=7;
+		}
 		if(deltaDay.includes(date)) dateDelta = deltaDay.indexOf(date);
 
 		return `2022/${currDate.getMonth()+1}/${currDate.getDate()+dateDelta}`; // returning calculated data in date format
@@ -44,9 +47,10 @@ const parseTimeFormat = (time: string): string => {
 
 client.on('messageCreate', message => {
 	if((message.channel.type === 'DM') || 
-		(message.channel.name !== 'commands')) return;
+		(message.channel.name !== 'commands') || 
+		(message.author.bot)) return;
 	const currentUTC = new Date().getTime();
-	message.channel.send(`${parseDateFormat('tomorrow')}`);
+	message.channel.send(`date: ${parseDateFormat(message.content)}`);
 });
 
 // setInterval(() => {
