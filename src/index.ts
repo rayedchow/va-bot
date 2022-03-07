@@ -16,7 +16,20 @@ const DATA = {
 	write: (data: Schedule[]) => writeFileSync('./data.json', JSON.stringify(data))
 };
 
-client.on('ready', () => console.log('bot initialized'));
+client.on('ready', () => {
+	console.log('bot initialized');
+	setInterval(() => {
+		const currData = DATA.get();
+		console.log(currData);
+		currData.forEach((schedule, i) => {
+			if(schedule.time <= new Date().getTime()) {
+				console.log('o ma gah');
+				currData.splice(i, 1);
+				DATA.write(currData);
+			}
+		});
+	}, 60000);
+});
 
 const parseDateFormat = (date: string): string => {
 	const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
@@ -79,16 +92,5 @@ client.on('messageCreate', message => {
 	DATA.write(currData);
 	message.react('✅');
 });
-
-setInterval(() => {
-	const currData = DATA.get();
-	currData.forEach((schedule, i) => {
-		if(schedule.time <= new Date().getTime()) {
-			console.log('o ma gah');
-			currData.splice(i, 1);
-			DATA.write(currData);
-		}
-	});
-}, 60000);
 
 client.login(process.env.TOKEN);
