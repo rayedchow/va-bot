@@ -26,9 +26,7 @@ client.on('ready', () => {
 				DATA.write(currData);
 				const alertChannel = client.guilds.cache.get('950093273995833405')?.channels.cache.get('950093273995833408');
 				const alertUser = '419223184366239753';
-				if(alertChannel && alertChannel.isText()) {
-					alertChannel.send(`<@${alertUser}> alert: ${schedule.activity} `);
-				}
+				if(alertChannel && alertChannel.isText()) alertChannel.send(`<@${alertUser}> alert: ${schedule.activity} @ ${schedule.parsedTime}`);
 			}
 		});
 	}, 15000);
